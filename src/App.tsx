@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import './App.css'
+import { showConfirm } from './react-melon'
 
 function App() {
 
   return (
     <>
-aa
+    <button onClick={()=>showConfirm()}>Show Confirm</button>
     </>
   )
 }
