@@ -1,8 +1,8 @@
 import React from "react";
 import ConfirmBox from "./ConfirmBox";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 
-export function showConfirm() {
+export function showConfirm(options:{title:string, description:string}) {
   const root = document.getElementById("root");
   const div = document.createElement("div");
   div.id = randomName();
@@ -18,7 +18,7 @@ export function showConfirm() {
   return new Promise((resolve, reject) => {
     if (root) {
       root.appendChild(div);
-      ReactDOM.render(<ConfirmBox resolve={resolve} container={div.id} />, div);
+      createRoot(div).render(<ConfirmBox resolve={resolve} container={div.id} options={options} />); // no longer support ReactDom.render after react 17
     } else {
       reject("root not found");
     }

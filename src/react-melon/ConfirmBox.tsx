@@ -5,6 +5,7 @@ import { TiInfoOutline } from "react-icons/ti";
 function ConfirmBox(props: {
   resolve: (value: boolean) => void;
   container: string;
+  options: { title: string; description: string };
 }) {
   const { resolve, container } = props;
 
@@ -28,8 +29,12 @@ function ConfirmBox(props: {
           This action cannot be undone. All values associated with this field
           will be lost.
         </div>
-        <button className="btn action">Delete field</button>
-        <button className="btn cancel">Cancel</button>
+        <button onClick={() => confirm(true)} className="btn action">
+          Delete field
+        </button>
+        <button onClick={() => confirm(false)} className="btn cancel">
+          Cancel
+        </button>
       </div>
     </>
   );

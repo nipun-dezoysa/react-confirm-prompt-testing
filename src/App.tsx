@@ -2,9 +2,16 @@ import { useState } from "react";
 import { showConfirm } from "./react-melon";
 
 function App() {
+
+  function handleShowConfirm() {
+    showConfirm().then((answer) => {
+      alert("User answered "+answer);
+    });
+  }
+
   return (
     <>
-      <button onClick={() => showConfirm()}>Show Confirm</button>
+      <button onClick={() => handleShowConfirm()}>Show Confirm</button>
     </>
   );
 }
