@@ -1,20 +1,22 @@
 import React from "react";
 import "./ConfirmBox.css";
 import { TiInfoOutline } from "react-icons/ti";
+import { options } from "./varTypes";
 
 function ConfirmBox(props: {
   resolve: (value: boolean) => void;
   container: string;
-  options: { title: string; description: string };
+  title: string;
+  options: options;
 }) {
-  const { resolve, container } = props;
+  const { resolve, container, title, options } = props;
 
   function confirm(answer: boolean) {
-    resolve(answer);
     const div = document.getElementById(container);
     if (div) {
       div.remove();
     }
+    resolve(answer);
   }
 
   return (
@@ -24,17 +26,18 @@ function ConfirmBox(props: {
         <div className="icon">
           <TiInfoOutline />
         </div>
-        <div className="title">Are you sure?</div>
+        <div className="title">{title}</div>
         <div className="description">
-          This action cannot be undone. All values associated with this field
-          will be lost.
+          {options.description ? options.description : ""}
         </div>
         <button onClick={() => confirm(true)} className="btn action">
-          Delete field
+          {options.confirmLabel ? options.confirmLabel : "Confirm"}
         </button>
-        <button onClick={() => confirm(false)} className="btn cancel">
-          Cancel
-        </button>
+        {!options.hideCancel && (
+          <button onClick={() => confirm(false)} className="btn cancel">
+            {options.cancelLabel ? options.cancelLabel : "Cancel"}
+          </button>
+        )}
       </div>
     </>
   );

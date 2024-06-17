@@ -2,10 +2,12 @@ import { useState } from "react";
 import { showConfirm } from "./react-melon";
 
 function App() {
-
   function handleShowConfirm() {
-    showConfirm().then((answer) => {
-      alert("User answered "+answer);
+    showConfirm("Are you sure?", {
+      description:
+        "This action cannot be undone. All values associated with this field will be lost.",
+    }).then((answer) => {
+      alert("User answered " + answer);
     });
   }
 

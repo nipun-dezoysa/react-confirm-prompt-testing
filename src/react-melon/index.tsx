@@ -1,8 +1,9 @@
 import React from "react";
 import ConfirmBox from "./ConfirmBox";
 import { createRoot } from "react-dom/client";
+import { options } from "./varTypes";
 
-export function showConfirm(options:{title:string, description:string}) {
+export function showConfirm(title:string,options:options={}) {
   const root = document.getElementById("root");
   const div = document.createElement("div");
   div.id = randomName();
@@ -18,7 +19,7 @@ export function showConfirm(options:{title:string, description:string}) {
   return new Promise((resolve, reject) => {
     if (root) {
       root.appendChild(div);
-      createRoot(div).render(<ConfirmBox resolve={resolve} container={div.id} options={options} />); // no longer support ReactDom.render after react 17
+      createRoot(div).render(<ConfirmBox resolve={resolve} container={div.id} title={title} options={options} />); // no longer support ReactDom.render after react 17
     } else {
       reject("root not found");
     }
