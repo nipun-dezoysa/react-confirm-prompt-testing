@@ -11,34 +11,48 @@ function ConfirmBox(props: {
   options: options;
 }) {
   const { resolve, container, title, options } = props;
-  const [icon, setIcon] = useState(<TiInfoOutline />);
-  const [iconColor, setIconColor] = useState("rgb(96 165 250)");
 
-  useEffect(() => {
-    if (options.type) {
-      switch (options.type) {
+  const getInitialColor = (type: string) => {
+    if (options.color) {
+      return options.color;
+    } else {
+      switch (type) {
         case "question":
-          setIcon(<GrCircleQuestion />);
-          setIconColor("rgb(34 211 238)");
-          break;
+          return "rgb(34 211 238)";
         case "warning":
-          setIcon(<TiWarningOutline />);
-          setIconColor("#f00");
-          break;
+          return "#f00";
         case "success":
-          setIcon(<GrStatusGood />);
-          setIconColor("rgb(74 222 128)");
-          break;
+          return "rgb(74 222 128)";
         default:
-          setIcon(<TiInfoOutline />);
-          setIconColor("rgb(96 165 250)");
-          break;
+          return "rgb(96 165 250)";
       }
     }
-    if (options.color) {
-      setIconColor(options.color);
+  };
+
+  const [iconColor, setIconColor] = useState(
+    getInitialColor(options.type ? options.type : "")
+  );
+
+  const getInitialIcon = (type: string) => {
+    if (options.icon) {
+      return options.icon;
+    } else {
+      switch (type) {
+        case "question":
+          return <GrCircleQuestion />;
+        case "warning":
+          return <TiWarningOutline />;
+        case "success":
+          return <GrStatusGood />;
+        default:
+          return <TiInfoOutline />;
+      }
     }
-  }, []);
+  };
+
+  const [icon, setIcon] = useState(
+    getInitialIcon(options.type ? options.type : "")
+  );
 
   function confirm(answer: boolean) {
     const div = document.getElementById(container);
@@ -85,7 +99,7 @@ function ConfirmBox(props: {
             backgroundColor: options.iconColor ? options.iconColor : iconColor,
           }}
         >
-          {options.icon ? options.icon : icon}
+          {icon}
         </div>
         <div className="title">{title}</div>
         <div className="description">

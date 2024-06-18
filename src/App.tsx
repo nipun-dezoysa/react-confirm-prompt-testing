@@ -5,7 +5,7 @@ function App() {
     showConfirm("Are you sure?", {
       description:
         "This action cannot be undone. All values associated with this field will be lost.",
-      type: "warning",
+      type: "success",
     }).then((answer) => {
       alert("User answered " + answer);
     });
