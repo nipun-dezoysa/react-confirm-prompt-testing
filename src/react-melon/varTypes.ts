@@ -14,4 +14,6 @@ export type options = {
   hoverTextColor?: string;
   icon?: JSX.Element;
   iconColor?: string;
+  hideBackground?: boolean;
+  hideShadow?: boolean;
 };

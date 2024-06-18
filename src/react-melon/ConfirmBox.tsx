@@ -91,8 +91,25 @@ function ConfirmBox(props: {
 
   return (
     <>
-      <div onClick={() => {if(!options.disableBlur)confirm(false)}} className="backGround" />
-      <div className="box">
+      <div
+        onClick={() => {
+          if (!options.disableBlur) confirm(false);
+        }}
+        className="backGround"
+        style={{
+          backgroundColor: options.hideBackground
+            ? "none"
+            : "rgba(0, 0, 0, 0.5)",
+        }}
+      />
+      <div
+        className="box"
+        style={{
+          filter: options.hideShadow
+            ? "none"
+            : "drop-shadow(0 25px 25px rgb(0 0 0 / 0.15))",
+        }}
+      >
         <div
           className="icon"
           style={{

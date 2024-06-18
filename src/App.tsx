@@ -6,7 +6,7 @@ function App() {
       description:
         "This action cannot be undone. All values associated with this field will be lost.",
       type: "success",
-      disableBlur: true,
+      hideShadow: true,
     }).then((answer) => {
       alert("User answered " + answer);
     });
