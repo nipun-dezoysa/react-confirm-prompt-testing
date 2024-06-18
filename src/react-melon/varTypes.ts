@@ -7,6 +7,7 @@ export type options = {
   cancelColor?: string;
   cancelTextColor?: string;
   hideCancel?: boolean;
+  disableBlur?: boolean;
   type?: "info" | "warning" | "success" | "question";
   color?: string;
   hoverColor?: string;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import "./ConfirmBox.css";
 import { TiInfoOutline, TiWarningOutline } from "react-icons/ti";
 import { GrStatusGood, GrCircleQuestion } from "react-icons/gr";
@@ -91,7 +91,7 @@ function ConfirmBox(props: {
 
   return (
     <>
-      <div onClick={() => confirm(false)} className="backGround" />
+      <div onClick={() => {if(!options.disableBlur)confirm(false)}} className="backGround" />
       <div className="box">
         <div
           className="icon"
