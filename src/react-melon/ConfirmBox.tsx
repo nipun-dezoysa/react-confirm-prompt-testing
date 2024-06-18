@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./ConfirmBox.css";
 import { TiInfoOutline, TiWarningOutline } from "react-icons/ti";
 import { GrStatusGood, GrCircleQuestion } from "react-icons/gr";
@@ -89,6 +89,18 @@ function ConfirmBox(props: {
       : "black";
   };
 
+  const confirmRef = useRef<HTMLButtonElement | null>(null);
+  const cancelRef = useRef<HTMLButtonElement | null>(null);
+  
+  useEffect(() => {
+    confirmRef.current?.focus();
+  }, []);
+
+  const handleKey = (e:any)=>{
+    if(e.keyCode === 38)confirmRef.current?.focus();
+    else if(e.keyCode === 40) cancelRef.current?.focus();
+  }
+
   return (
     <>
       <div
@@ -135,6 +147,8 @@ function ConfirmBox(props: {
           }}
           onMouseOver={handleMouseOver}
           onMouseOut={handleConfirmOut}
+          ref={confirmRef}
+          onKeyDown={handleKey}
         >
           {options.confirmLabel ? options.confirmLabel : "Confirm"}
         </button>
@@ -152,6 +166,8 @@ function ConfirmBox(props: {
             }}
             onMouseOver={handleMouseOver}
             onMouseOut={handleCancelOut}
+            ref={cancelRef}
+            onKeyDown={handleKey}
           >
             {options.cancelLabel ? options.cancelLabel : "Cancel"}
           </button>
