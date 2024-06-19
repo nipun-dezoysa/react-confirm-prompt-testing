@@ -91,15 +91,15 @@ function ConfirmBox(props: {
 
   const confirmRef = useRef<HTMLButtonElement | null>(null);
   const cancelRef = useRef<HTMLButtonElement | null>(null);
-  
+
   useEffect(() => {
     confirmRef.current?.focus();
   }, []);
 
-  const handleKey = (e:any)=>{
-    if(e.keyCode === 38)confirmRef.current?.focus();
-    else if(e.keyCode === 40) cancelRef.current?.focus();
-  }
+  const handleKey = (e: any) => {
+    if (e.keyCode === 38) confirmRef.current?.focus();
+    else if (e.keyCode === 40) cancelRef.current?.focus();
+  };
 
   return (
     <>
@@ -136,7 +136,7 @@ function ConfirmBox(props: {
         </div>
         <button
           onClick={() => confirm(true)}
-          className="btn action"
+          className="btn"
           style={{
             backgroundColor: options.confirmColor
               ? options.confirmColor
@@ -155,7 +155,7 @@ function ConfirmBox(props: {
         {!options.hideCancel && (
           <button
             onClick={() => confirm(false)}
-            className="btn cancel"
+            className="btn"
             style={{
               backgroundColor: options.cancelColor
                 ? options.cancelColor
